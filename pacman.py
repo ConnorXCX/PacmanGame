@@ -49,7 +49,7 @@ def draw_board():
                     screen, secondary_color if level[i][j] == 4 else ghost_door_color,
                     (j * tile_width, i * tile_height + (0.5 * tile_height)),
                     (j * tile_width + tile_width, i * tile_height + (0.5 * tile_height)), 3)
-            # TODO: Fix rendering of arcs so there is no pixel offsets needed.
+            # TODO: Fix rendering of arcs so there are no pixel offsets needed.
             if level[i][j] == 5:
                 pygame.draw.arc(
                     screen, secondary_color,
