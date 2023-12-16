@@ -17,6 +17,7 @@ primary_color = 'white'
 secondary_color = 'blue'
 ghost_door_color = 'white'
 
+# TODO: Move code to method.
 player_images = []
 for i in range(1, 5):
     player_images.append(pygame.transform.scale(
