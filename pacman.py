@@ -84,6 +84,7 @@ def draw_player():
 run = True
 while run:
     timer.tick(fps)
+    counter += 1 if counter < 19 else 0
     screen.fill(background_color)
     draw_board()
     draw_player()
@@ -91,6 +92,15 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RIGHT:
+                direction = 0
+            if event.key == pygame.K_LEFT:
+                direction = 1
+            if event.key == pygame.K_UP:
+                direction = 2
+            if event.key == pygame.K_DOWN:
+                direction = 3
 
     pygame.display.flip()
 pygame.quit()
