@@ -17,8 +17,17 @@ primary_color = 'white'
 secondary_color = 'blue'
 ghost_door_color = 'white'
 
+player_images = []
+for i in range(1, 5):
+    player_images.append(pygame.transform.scale(
+        pygame.image.load(f'assets/player/{i}.png'), (45, 45)))
+player_x = 450
+player_y = 663
+direction = 0
+counter = 0
 
-def draw_board(level):
+
+def draw_board():
     tile_height = ((HEIGHT - 50) // 32)
     tile_width = (WIDTH // 30)
     for i in range(len(level)):
@@ -58,11 +67,26 @@ def draw_board(level):
                     [(j * tile_width - (tile_width * 0.4)) - 2, (i * tile_height - (0.4 * tile_height)), tile_width, tile_height], 3*PI/2, 2*PI, 3)
 
 
+def draw_player():
+    if direction == 0:  # RIGHT
+        screen.blit(player_images[counter // 5], (player_x, player_y))
+    elif direction == 1:  # LEFT
+        screen.blit(pygame.transform.flip(
+            player_images[counter // 5], True, False), (player_x, player_y))
+    elif direction == 2:  # UP
+        screen.blit(pygame.transform.rotate(
+            player_images[counter // 5], 90), (player_x, player_y))
+    elif direction == 3:  # DOWN
+        screen.blit(pygame.transform.rotate(
+            player_images[counter // 5], 270), (player_x, player_y))
+
+
 run = True
 while run:
     timer.tick(fps)
     screen.fill(background_color)
-    draw_board(level)
+    draw_board()
+    draw_player()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
